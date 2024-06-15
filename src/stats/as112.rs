@@ -78,7 +78,7 @@ impl As112Updater {
     points: f64,
   ) -> anyhow::Result<Series<HashMap<String, Vec<(f64, f64)>>>> {
     let query = PrometheusQuery {
-      query: "sum by (type) (rate(knot_query_type_total[5m]))".to_string(),
+      query: "sum by (type) (rate(knot_query_type_total[5m])) >= 0.01".to_string(),
       start,
       end,
       step: ((end - start) / points).as_seconds_f64(),
